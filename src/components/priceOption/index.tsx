@@ -9,66 +9,70 @@ import { Toast, useToast } from "../Toast";
 const PriceOption = ({ name, price }: { name: string; price: number | string }) => {
   const [priceOption, setPriceOption] = React.useState("per-month");
   const [showPopUp, setShowPopUp] = React.useState(false);
+  const { open, toast } = useToast();
   return (
-    <div className={style.price_option}>
-      <div>
-        <Image
-          src="https://vietteltelecom.vn/images_content/ic-it-pack-3.svg"
-          alt="Picture of the author"
-          width={40}
-          height={40}
-        ></Image>
-        <strong>Phương án đóng cước</strong>
-      </div>
-      <ul className={style.option}>
-        <li onClick={() => setPriceOption("per-month")}>
-          <div className={style.dot + " " + (priceOption === "per-month" ? style.active : "")}></div>
-          Đóng hàng tháng
-        </li>
-        <li
-          onClick={() => {
-            if (priceOption === "per-month") {
-              setPriceOption("six-month");
-            }
-          }}
-        >
-          <div className={style.dot + " " + (priceOption !== "per-month" ? style.active : "")}></div>
-          Đóng cước trước
-        </li>
-      </ul>
-      {priceOption !== "per-month" && (
-        <ul className={style.child_option}>
-          <li
-            className={priceOption === "six-month" ? style.active : ""}
-            onClick={() => {
-              setPriceOption("six-month");
-            }}
-          >
-            <span>Đóng trước 6 tháng</span>
-            <span>{formatPrice(Number(price) * 6)}</span>
-            <i>Khuyến mãi 01 tháng</i>
+    <div>
+      <Toast show={toast.show} type={toast.type} />
+      <div className={style.price_option}>
+        <div>
+          <Image
+            src="https://vietteltelecom.vn/images_content/ic-it-pack-3.svg"
+            alt="Picture of the author"
+            width={40}
+            height={40}
+          ></Image>
+          <strong>Phương án đóng cước</strong>
+        </div>
+        <ul className={style.option}>
+          <li onClick={() => setPriceOption("per-month")}>
+            <div className={style.dot + " " + (priceOption === "per-month" ? style.active : "")}></div>
+            Đóng hàng tháng
           </li>
           <li
-            className={priceOption === "twelve-month" ? style.active : ""}
             onClick={() => {
-              setPriceOption("twelve-month");
+              if (priceOption === "per-month") {
+                setPriceOption("six-month");
+              }
             }}
           >
-            <span>Đóng trước 12 tháng</span>
-            <span>{formatPrice(Number(price) * 12)}</span>
-            <i>Khuyến mãi 02 tháng</i>
+            <div className={style.dot + " " + (priceOption !== "per-month" ? style.active : "")}></div>
+            Đóng cước trước
           </li>
         </ul>
-      )}
-      <button
-        className={style.contact_btn}
-        onClick={() => {
-          setShowPopUp(true);
-        }}
-      >
-        Liên hệ ngay
-      </button>
-      <PopUp show={showPopUp} setShow={setShowPopUp} productName={name} option={priceOption} />
+        {priceOption !== "per-month" && (
+          <ul className={style.child_option}>
+            <li
+              className={priceOption === "six-month" ? style.active : ""}
+              onClick={() => {
+                setPriceOption("six-month");
+              }}
+            >
+              <span>Đóng trước 6 tháng</span>
+              <span>{formatPrice(Number(price) * 6)}</span>
+              <i>Khuyến mãi 01 tháng</i>
+            </li>
+            <li
+              className={priceOption === "twelve-month" ? style.active : ""}
+              onClick={() => {
+                setPriceOption("twelve-month");
+              }}
+            >
+              <span>Đóng trước 12 tháng</span>
+              <span>{formatPrice(Number(price) * 12)}</span>
+              <i>Khuyến mãi 02 tháng</i>
+            </li>
+          </ul>
+        )}
+        <button
+          className={style.contact_btn}
+          onClick={() => {
+            setShowPopUp(true);
+          }}
+        >
+          Liên hệ ngay
+        </button>
+        <PopUp show={showPopUp} setShow={setShowPopUp} productName={name} option={priceOption} openToast={open} />
+      </div>
     </div>
   );
 };
@@ -80,11 +84,13 @@ const PopUp = ({
   setShow,
   option,
   productName,
+  openToast,
 }: {
   show: boolean;
   setShow: (show: boolean) => void;
   option: string;
   productName: string;
+  openToast?: (type: "success" | "warning" | "error") => void;
 }) => {
   const [info, setInfo] = React.useState({
     name: "",
@@ -99,11 +105,10 @@ const PopUp = ({
     setInfo({ ...info, priceOption: option });
   }, [option]);
 
-  const { open, toast } = useToast();
   const { open: openLoading, close: closeLoading, show: showLoading } = useLoading();
   const handleSignUp = async () => {
     if (!info.name || !info.phone) {
-      open("warning");
+      openToast && openToast("warning");
       // alert("Vui lòng nhập đầy đủ thông tin");
       return;
     }
@@ -122,15 +127,14 @@ const PopUp = ({
 
     closeLoading();
     if (!response.ok) {
-      open("error");
+      openToast && openToast("error");
     }
     setShow(false);
-    open("success");
+    console.log("response", response);
+    openToast && openToast("success");
   };
-
   return (
     <div className={style.popup + " " + (show ? style.active : "")}>
-      <Toast show={toast.show} type={toast.type} />
       <Loading show={showLoading} />
       <div className={style.popup_content + " " + (show ? style.active : "")}>
         <div className={style.popup_header}>
