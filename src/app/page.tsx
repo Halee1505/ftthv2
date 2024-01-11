@@ -1,95 +1,71 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import elementStyle from "@/style/home.module.css";
+import Image from "next/image";
 
-export default function Home() {
+import Slider from "@/components/slider";
+import { Product } from "@/interface/product";
+import data from "../../public/data/data.json";
+import Navbar from "@/components/navbar";
+import Introduce from "@/components/introduce";
+import type { Metadata } from "next";
+import Register from "@/components/register";
+import Footer from "@/components/Footer";
+import Carousel from "@/components/carousel";
+
+export const metadata: Metadata = {
+  title: "Viettel Telecom",
+  description: "Viettel Telecom",
+};
+
+const Home = async () => {
+  const products = data.data.list as unknown as Product[];
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className={elementStyle.main}>
+      <section className={elementStyle.section1} id="homepage">
+        <Navbar />
+        <div className={elementStyle.banner_overlay}>
+          <h1>Viettel Telecom – Nhà cung cấp Dịch vụ di động, Internet, Truyền hình và Giải pháp CNTT</h1>
+          <div className={elementStyle.banner}>
+            <Carousel>
+              <div className={elementStyle.banner_item}>
+                <Image src="/assets/banner/h1.webp" alt="Picture of the author" fill></Image>
+              </div>
+              <div className={elementStyle.banner_item}>
+                <Image src="/assets/banner/h2.webp" alt="Picture of the author" fill></Image>
+              </div>
+              <div className={elementStyle.banner_item}>
+                <Image src="/assets/banner/h3.webp" alt="Picture of the author" fill></Image>
+              </div>
+              <div className={elementStyle.banner_item}>
+                <Image src="/assets/banner/h4.webp" alt="Picture of the author" fill></Image>
+              </div>
+            </Carousel>
+          </div>
+          <Image
+            src="/assets/logo.png"
+            alt="Viettel logo"
+            className={elementStyle.logo}
+            height={544 * 0.2}
+            width={2560 * 0.2}
+          ></Image>
         </div>
+        {/* <div className={elementStyle.icon1}></div> */}
+        {/* <Image src="/assets/model.png" alt="Viettel model" fill className={elementStyle.model}></Image> */}
+      </section>
+      <div className={elementStyle.home_bg}>
+        <Image src="/assets/internet2.jpeg" alt="Picture of the author" fill></Image>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <section className={elementStyle.section3} id="product">
+        <Slider items={products} />
+      </section>
+      <section className={elementStyle.section2} id="intro">
+        <Introduce />
+      </section>
+      <section id="contact">
+        <Register />
+        <Footer />
+      </section>
     </main>
-  )
-}
+  );
+};
+
+export default Home;

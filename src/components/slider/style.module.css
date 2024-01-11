@@ -1,0 +1,82 @@
+.overlay {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.overlay h2 {
+    font-size: 3.3em;
+    font-weight: 900;
+    margin-bottom: 0px;
+    color: #fff;
+    text-shadow: #000 4px 4px 2px;
+}
+
+.slider {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 0 20px;
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider>* {
+    scroll-snap-align: center;
+    display: inline-block;
+}
+
+.arrow {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #cdcdcd;
+    top: 50%;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.arrow:first-child {
+    left: 5em;
+    right: auto;
+}
+
+.arrow:last-child {
+    right: 5em;
+    left: auto;
+}
+
+@media (max-width: 990px) {
+    .overlay h2 {
+        font-size: 2.2em !important;
+
+    }
+}
+
+@media (max-width: 700px) {
+    .overlay h2 {
+        font-size: 1.8em !important;
+        margin-top: 20px;
+    }
+
+    .slider {
+        margin-top: 10px;
+    }
+
+}

@@ -1,0 +1,24 @@
+.content_overlay {
+    width: 100%;
+    height: max-content;
+    padding: 20px 40px;
+}
+
+.content {
+    background-color: #fff;
+    width: 60%;
+    padding: 20px;
+    border-radius: 4px;
+    color: rgb(0, 0, 0);
+    line-height: 1.6;
+}
+
+.content p::first-letter {
+    margin-left: 20px;
+}
+
+.content li {
+    margin-left: 20px;
+    list-style: disc;
+
+}

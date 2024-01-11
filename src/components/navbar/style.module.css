@@ -1,0 +1,124 @@
+.nav {
+    color: #fff;
+}
+
+.logo, .close {
+    display: none;
+}
+
+.logo img {
+    height: 50px;
+    aspect-ratio: 500/106.2;
+}
+
+
+.nav ul {
+    width: 100%;
+    height: max-content;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: rgb(218, 41, 28);
+    border-bottom: 1px solid rgb(215, 215, 215);
+
+}
+
+.nav li {
+    font-size: 1.4em;
+    font-weight: 600;
+    list-style: none;
+}
+
+.nav li a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+@media (max-width: 700px) {
+    .nav {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: flex-end;
+        opacity: 0;
+        z-index: -200;
+        transition: opacity 0.3s ease-in-out, z-index 0.3s ease-in-out;
+    }
+
+    .nav.active {
+        opacity: 1;
+        z-index: 200;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(255, 50, 35);
+        position: absolute;
+        opacity: 1;
+        width: 100%;
+        padding: 5px 10px;
+        top: 0px;
+        position: sticky;
+    }
+
+    .logo img {
+        height: 45px;
+        aspect-ratio: 500/106.2;
+        filter: drop-shadow(1px 1px 1px #fff) drop-shadow(1px -1px 1px #fff);
+    }
+
+    .logo svg {
+        width: 35px;
+        height: 35px;
+        z-index: 10;
+    }
+
+
+    .nav ul {
+        height: 100%;
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        background-image: url('/assets/internet2.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        gap: 10px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        padding-top: 30px;
+    }
+
+    .close {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 24px;
+        height: 24px;
+        z-index: 10;
+
+    }
+
+    .nav.active ul {
+        transform: translateX(0%);
+    }
+
+    .nav ul li a {
+        color: rgb(255, 255, 255);
+        font-size: 0.9em;
+    }
+
+}

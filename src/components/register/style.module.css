@@ -1,0 +1,138 @@
+*:has(>.register_content) {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.register_content {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+    background-color: rgb(255, 255, 255);
+    width: calc(100% - 40px);
+    max-width: 500px;
+    margin: 0px auto;
+    height: max-content;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    color: rgb(0, 0, 0);
+    flex-direction: column;
+    gap: 5px;
+}
+
+.register_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.register_header h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+
+
+}
+
+.register_header h3 span {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: rgb(248, 0, 50);
+    animation: shaking 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes shaking {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+        /* transform: translateX(5px); */
+    }
+
+
+}
+
+.register_header span * {
+    height: 1em;
+    width: 1em;
+}
+
+.register_body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form_group span {
+
+    font-size: 0.8em;
+    color: rgb(248, 0, 50);
+    font-weight: 600;
+}
+
+.form_group label {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.form_group input, .form_group textarea {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    outline: none;
+
+}
+
+.form_group input.error_input, .form_group textarea.error_input {
+    border: 1px solid rgb(248, 0, 50);
+}
+
+.form_group input.error_input, .form_group textarea.error_input:focus {
+    border: 1px solid rgb(248, 0, 50);
+}
+
+.form_group input.success_input, .form_group textarea.success_input {
+    border: 1px solid green;
+}
+
+
+
+.form_group textarea {
+    resize: none;
+    height: 100px;
+}
+
+.submit_btn {
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: rgb(248, 0, 50);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(248, 0, 50);
+
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.submit_btn:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(248, 0, 50);
+}
+
+@media (max-width: 700px) {
+    *:has(>.register_content) {
+        margin-top: 0px;
+        margin-bottom: 40px;
+    }
+}

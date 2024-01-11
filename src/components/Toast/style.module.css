@@ -1,0 +1,39 @@
+.toast {
+    position: fixed;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    height: max-content;
+    background-color: transparent;
+
+    z-index: 999;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.toast.active {
+    top: 20px;
+
+}
+
+.toast>* {
+    border-radius: 16px;
+    padding: 10px 16px;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.success {
+    background-color: green;
+
+}
+
+.warning {
+    background-color: rgb(237, 153, 28);
+}
+
+.error {
+    background-color: rgb(248, 0, 50);
+}
