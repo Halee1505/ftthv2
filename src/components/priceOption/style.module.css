@@ -98,7 +98,7 @@
 
 .contact_btn {
     position: absolute;
-    bottom: 0px;
+    bottom: -50px;
     width: max-content;
     left: 50%;
     transform: translateX(-50%);
