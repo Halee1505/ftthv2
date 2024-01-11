@@ -89,8 +89,8 @@ const PopUp = ({
   const [info, setInfo] = React.useState({
     name: "",
     phone: "",
-    address: "",
-    note: "",
+    // address: "",
+    // note: "",
     productName,
     priceOption: option,
   });
@@ -102,7 +102,7 @@ const PopUp = ({
   const { open, toast } = useToast();
   const { open: openLoading, close: closeLoading, show: showLoading } = useLoading();
   const handleSignUp = async () => {
-    if (!info.name || !info.phone || !info.address) {
+    if (!info.name || !info.phone) {
       open("warning");
       // alert("Vui lòng nhập đầy đủ thông tin");
       return;
@@ -110,8 +110,8 @@ const PopUp = ({
     const data = new FormData();
     data.append("name", info.name);
     data.append("phone", info.phone);
-    data.append("address", info.address);
-    data.append("note", info.note);
+    // data.append("address", info.address);
+    // data.append("note", info.note);
     data.append("productName", info.productName);
     data.append("priceOption", info.priceOption);
     openLoading();
@@ -196,7 +196,7 @@ const PopUp = ({
                 value={info.phone}
               />
             </div>
-            <div className={style.form_group}>
+            {/* <div className={style.form_group}>
               <label htmlFor="address">
                 Địa chỉ <span>*</span>
               </label>
@@ -220,7 +220,7 @@ const PopUp = ({
                 }}
                 value={info.note}
               ></textarea>
-            </div>
+            </div> */}
             <div className={style.form_group}>
               <button
                 className={style.submit_btn}
