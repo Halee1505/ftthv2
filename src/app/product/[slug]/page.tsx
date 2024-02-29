@@ -15,6 +15,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: product.name,
     description: product.desc,
+    keywords: [
+      "Viettel",
+      "telecom",
+      "mạng di động",
+      "internet",
+      "truyền hình",
+      "dịch vụ số",
+      "viettel",
+      "247",
+      "gói cước",
+      "24/7",
+
+      product.name,
+      product.subFee,
+      product.bandwidth,
+    ],
   };
 }
 const Product = async ({ params }: { params: { slug: string } }) => {
