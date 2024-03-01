@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://internetviettel247.vercel.app/sitemap.xml
